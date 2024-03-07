@@ -1,0 +1,39 @@
+<body>
+<mat-card>
+  <b><span>Dashboard</span></b>
+</mat-card>
+<br>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2 class="title">Total Appointments</h2>
+        <h1 class="title">{{ data?.appointment }}</h1>
+        <p>
+          <button class="button" [routerLink]="['/cafe/category']"> View Appointment </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2 class="title">Total Channelling</h2>
+        <h1 class="title">{{data?.channelling}}</h1>
+        <p><button class="button" [routerLink]="['/cafe/channelling ']"> View Channelling </button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="container">
+        <h2 class="title">Total Bill</h2>
+        <h1 class="title">{{data?.bill}}</h1>
+        <p><button class="button" [routerLink]="['/cafe/bill']"> View Bill </button></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

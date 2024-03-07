@@ -4,6 +4,7 @@ import { SignupComponent } from '../signup/signup.component';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {LoginComponent} from '../login/login.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
   handleLoginAction(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '550px';
-    this.dialog.open(ForgotPasswordComponent, dialogConfig);
+    this.dialog.open(LoginComponent, dialogConfig);
   }
 
 }

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UserService {
   url = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
-
-  signup(date: any){
-    return this.httpClient.post(this.url + '/user/signup', date, {headers: new HttpHeaders({'Content-Type': 'application/json'})});
+  constructor(private httpClient: HttpClient) {
   }
 
-  forgotPassword(date: any){
-    return this.httpClient.post(this.url + '/user/forgotPassword', date, {headers: new HttpHeaders({'Content-Type': 'application/json'})});
+  signup(data: any) {
+    return this.httpClient.post(this.url + '/user/signup', data, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  login(date: any){
-    return this.httpClient.post(this.url + '/user/login', date, {headers: new HttpHeaders({'Content-Type': 'application/json'})});
+  forgotPassword(data: any) {
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.post(this.url + '/user/forgotPassword', data, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
   }
 
-  checkToken(){
+  login(data: any) {
+    return this.httpClient.post(this.url + '/user/login', data, {headers: new HttpHeaders().set('Content-Type', 'application/json')});
+  }
+
+  checkToken() {
     return this.httpClient.get(this.url + '/user/checkToken');
   }
+
 }

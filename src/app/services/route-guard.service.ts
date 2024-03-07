@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 import {ActivatedRouteSnapshot, Router} from '@angular/router';
 import {SnackbarService} from './snackbar.service';
-import {jwt_decode} from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import {GlobalConstants} from '../shared/global-constants';
 
 @Injectable({
@@ -15,30 +15,29 @@ export class RouteGuardService {
               private snackbarService: SnackbarService) {
   }
 
-  canActivate(router: ActivatedRouteSnapshot): boolean {
-    let expectedRoleArray = route.data();
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    let expectedRoleArray = route.data;
     expectedRoleArray = expectedRoleArray.expectedRole;
+
     const token: any = localStorage.getItem('token');
 
     var tokenPayload: any;
     try {
       tokenPayload = jwt_decode(token);
-
     } catch (err) {
       localStorage.clear();
       this.router.navigate(['/']);
     }
+
     let expectedRole = '';
 
-    // @ts-ignore
-    for (let i = 0; i < expectedRoleArray.length; i++) {
-      if (expectedRoleArray[i] === tokenPayload.role) {
+    for (let i = 0; i  < expectedRoleArray.length; i++){
+      if (expectedRoleArray[i] === tokenPayload.role){
         expectedRole = tokenPayload.role;
       }
     }
-
-    if (tokenPayload.role === 'user' || tokenPayload.role === 'admin') {
-      if (this.auth.isAuthenticated() && tokenPayload.role === expectedRole) {
+    if (tokenPayload.role === 'user' || tokenPayload.role === 'admin'){
+      if (this.auth.isAuthenticated() && tokenPayload.role === expectedRole){
         return true;
       }
       this.snackbarService.openSnackBar(GlobalConstants.unauthorized, GlobalConstants.error);
@@ -49,6 +48,5 @@ export class RouteGuardService {
       localStorage.clear();
       return false;
     }
-
   }
 }

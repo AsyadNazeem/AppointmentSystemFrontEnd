@@ -1,38 +1,39 @@
- import { NgModule } from '@angular/core';
- import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
- import { AppRoutingModule } from './app-routing.module';
- import { AppComponent } from './app.component';
- import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
- import { MaterialModule } from './shared/material-module';
- import { HomeComponent } from './home/home.component';
- import { BestSellerComponent } from './best-seller/best-seller.component';
- import { FormsModule, ReactiveFormsModule } from '@angular/forms';
- import { FlexLayoutModule } from '@angular/flex-layout';
- import { SharedModule } from './shared/shared.module';
- import { FullComponent } from './layouts/full/full.component';
- import { AppHeaderComponent } from './layouts/full/header/header.component';
- import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
- import { HttpClientModule } from '@angular/common/http';
- import { SignupComponent } from './signup/signup.component';
- import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from 'ngx-ui-loader';
- import {Spinner} from '@angular/cli/utilities/spinner';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LoginComponent } from './login/login.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './shared/material-module';
+import {HomeComponent} from './home/home.component';
+import {BestSellerComponent} from './best-seller/best-seller.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {SharedModule} from './shared/shared.module';
+import {FullComponent} from './layouts/full/full.component';
+import {AppHeaderComponent} from './layouts/full/header/header.component';
+import {AppSidebarComponent} from './layouts/full/sidebar/sidebar.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {SignupComponent} from './signup/signup.component';
+import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from 'ngx-ui-loader';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {LoginComponent} from './login/login.component';
+import {TokenInterceptorInterceptor} from './services/token-interceptor.interceptor';
 
- const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-   text: 'Processing',
-   textColor: '#FFFFFF',
-   textPosition: 'center-center',
-   bgsColor: '#7b1fa2',
-   fgsColor: '#7b1fa2',
-   fgsType: SPINNER.ballSpin,
-   fgsSize: 100,
-   hasProgressBar: false
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  text: 'Processing',
+  textColor: '#FFFFFF',
+  textPosition: 'center-center',
+  bgsColor: '#7b1fa2',
+  fgsColor: '#7b1fa2',
+  fgsType: SPINNER.ballSpin,
+  fgsSize: 100,
+  hasProgressBar: false
 
- };
+};
 
- @NgModule({
+// @ts-ignore
+@NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
@@ -43,7 +44,7 @@ import { LoginComponent } from './login/login.component';
     SignupComponent,
     ForgotPasswordComponent,
     LoginComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -56,7 +57,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
-  providers: [],
+  providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
