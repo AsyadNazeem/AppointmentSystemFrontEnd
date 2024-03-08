@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', response.token);
       this.router.navigate(['/cafe/dashboard']);
     }, (error: any) => {
+      this.ngxService.stop();
       if (error.status === 401){
         this.responseMessage = error.error?.message;
       } else {
