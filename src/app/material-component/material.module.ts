@@ -16,6 +16,8 @@ import { ManageAppointmentComponent } from './manage-appointment/manage-appointm
 import { AppointmentComponent } from './dialog/appointment/appointment.component';
 import { ManageChannelComponent } from './manage-channel/manage-channel.component';
 import { ChannelComponent } from './dialog/channel/channel.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { ChannelComponent } from './dialog/channel/channel.component';
     ManageAppointmentComponent,
     AppointmentComponent,
     ManageChannelComponent,
-    ChannelComponent
+    ChannelComponent,
+    ManageOrderComponent,
+    MakeAppointmentComponent
   ]
 })
 export class MaterialComponentsModule {}

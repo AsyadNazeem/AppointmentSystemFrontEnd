@@ -17,9 +17,8 @@ const routes: Routes = [
       },
       {
         path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule),
-        canActivate: [RouteGuardService],
+        loadChildren: () => import('./material-component/material.module').then(m => m.MaterialComponentsModule),
+        canActivate: [RouteGuardService], // Make sure it's inside an array
         data: {
           expectedRole: ['admin', 'user']
         }
@@ -27,13 +26,14 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [RouteGuardService],
+        canActivate: [RouteGuardService], // Make sure it's inside an array
         data: {
           expectedRole: ['admin', 'user']
         }
       }
     ]
-  },     { path: '**', component: HomeComponent }
+  },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

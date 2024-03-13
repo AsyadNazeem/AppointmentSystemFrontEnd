@@ -16,8 +16,8 @@ File: scss
  *	7. Widgets
  *	8. Custom Templates
  */
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 
 * {
@@ -49,7 +49,7 @@ a.link {
   text-decoration: none;
   &:hover,
   &:focus {
-    color: $themecolor;
+    color: #2e5266ff;
   }
 }
 .img-responsive {
@@ -190,7 +190,7 @@ Blockquote
 
 html body blockquote {
   border: 1px solid $border;
-  border-left: 5px solid $themecolor;
+  border-left: 5px solid #2e5266ff;
   padding: 15px;
   margin: 20px 0;
 }
@@ -541,7 +541,7 @@ Text Colors
 }
 
 .text-info {
-  color: $info !important;
+  color: #2e5266ff !important;
 }
 
 .text-inverse {
@@ -553,7 +553,7 @@ html body {
   }
 
   .text-purple {
-    color: $purple;
+    color: #2e5266ff;
   }
 
   .text-primary {
@@ -568,7 +568,7 @@ html body {
     color: $bodytext;
   }
   .text-themecolor {
-    color: $themecolor;
+    color: #2e5266ff;
   }
   .text-center {
     text-align: center;
@@ -593,7 +593,7 @@ Background Colors
 }
 
 .bg-info {
-  background-color: $info !important;
+  background-color: #2e5266ff !important;
 }
 
 .bg-warning {
@@ -608,7 +608,7 @@ html body {
     background-color: $megna;
   }
   .bg-theme {
-    background-color: $themecolor;
+    background-color: #2e5266ff;
   }
 
   .bg-inverse {
@@ -675,13 +675,13 @@ Rounds
   font-weight: 400;
   text-align: center;
   border-radius: 100%;
-  background: $info;
+  background: #2e5266ff;
   img {
     border-radius: 100%;
   }
 }
 .round.round-info {
-  background: $info;
+  background: #2e5266ff;
 }
 
 .btn-block {
