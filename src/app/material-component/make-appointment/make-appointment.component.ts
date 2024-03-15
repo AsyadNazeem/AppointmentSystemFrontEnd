@@ -6,8 +6,7 @@ import {SnackbarService} from '../../services/snackbar.service';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {GlobalConstants} from '../../shared/global-constants';
-import {ChannelComponent} from '../dialog/channel/channel.component';
-import {element} from 'protractor';
+import {BookAppointmentComponent} from '../dialog/book-appointment/book-appointment.component';
 
 @Component({
   selector: 'app-make-appointment',
@@ -16,9 +15,8 @@ import {element} from 'protractor';
 })
 export class MakeAppointmentComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'appointmentName', 'description', 'hospital', 'edit'];
+  displayedColumns: string[] = ['name', 'appointmentName', 'description', 'hospital', 'date', 'amount', 'appointment_count', 'edit'];
   dataSource: any;
-  // length1: any;
   responseMessage: any;
 
   constructor(private channelService: ChannelService,
@@ -78,6 +76,20 @@ export class MakeAppointmentComponent implements OnInit {
   // onChange(status: any, id: any) {
   // }
 
-  bookAppointment(){}
+  bookAppointment(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      action: 'Add'
+    };
+    dialogConfig.width = '850px';
+    const dialogRef = this.dialog.open(BookAppointmentComponent, dialogConfig);
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
+
+    const sub = dialogRef.componentInstance.onAddBookAppointment.subscribe((response) => {
+      this.tableData();
+    });
+  }
 
 }

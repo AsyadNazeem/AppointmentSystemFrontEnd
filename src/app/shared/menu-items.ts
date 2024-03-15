@@ -14,6 +14,8 @@ const MENUITEMS = [
   {state: 'channelling', name: 'Manage Channelling', type: 'link', icon: 'recent_actors', role: 'admin'},
   {state: 'order', name: 'Manage order', type: 'link', icon: 'shopping_cart', role: ''},
   {state: 'MakeAppointment' , name: 'Make an Appointment', type: 'link', icon: 'contact_mail', role: 'user'},
+  {state: 'AllAppointments' , name: 'All Appointments', type: 'link', icon: 'contact_mail', role: 'admin'},
+  {state: 'yourAppointments' , name: 'Your Appointments', type: 'link', icon: 'contact_mail', role: 'user'},
 ];
 
 @Injectable()

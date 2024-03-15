@@ -1,0 +1,98 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row">
+    <span>{{ dialogData.action }} Appointment </span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="bookAppointmentForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngif="bookAppointmentForm.controls.name.touched && bookAppointmentForm.controls.name.invalid">
+            <span *ngif="bookAppointmentForm.controls.name.errors.required">This Field is mandatory</span>
+            <span *ngif="bookAppointmentForm.controls.name.errors.pattern">This Field invalid</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Doctor</mat-label>
+          <mat-select formControlName="doctor" required>
+            <mat-option *ngFor="let channelling of channelling" [value]="channelling.id">
+              {{ channelling.doctor}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Age</mat-label>
+          <input matInput formControlName="age" required>
+          <mat-error *ngif="bookAppointmentForm.controls.age.touched && bookAppointmentForm.controls.age.invalid">
+            <span *ngif="bookAppointmentForm.controls.age.errors.required">This Field is mandatory</span>
+            <span *ngif="bookAppointmentForm.controls.age.errors.pattern">This Field invalid</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Hospitals</mat-label>
+          <mat-select formControlName="channellingId" required>
+            <mat-option *ngFor="let channelling of channelling" [value]="channelling.id">
+              {{ channelling.hospital }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="bookAppointmentForm.controls.email.touched && bookAppointmentForm.controls.email.invalid">
+            <span *ngIf="bookAppointmentForm.controls.email.errors.required">This field is mandatory</span>
+            <span *ngIf="bookAppointmentForm.controls.email.errors.pattern">Invalid email format</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Mobile</mat-label>
+          <input matInput formControlName="mobile" required>
+          <mat-error *ngIf="bookAppointmentForm.controls.mobile.touched && bookAppointmentForm.controls.mobile.invalid">
+            <span *ngIf="bookAppointmentForm.controls.mobile.errors.required">This field is mandatory</span>
+            <span *ngIf="bookAppointmentForm.controls.mobile.errors.pattern">Invalid mobile number</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap">
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="date" formControlName="date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker #date></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()">
+    <mat-icon>save</mat-icon>
+    {{ action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon>
+    Close
+  </button>
+</mat-dialog-actions>
+

@@ -18,6 +18,11 @@ import { ManageChannelComponent } from './manage-channel/manage-channel.componen
 import { ChannelComponent } from './dialog/channel/channel.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
+import { BookAppointmentComponent } from './dialog/book-appointment/book-appointment.component';
+import { GetAppointmentComponent } from './get-appointment/get-appointment.component';
+import { DatePipe } from '@angular/common';
+import { YourAppointmentsComponent } from './your-appointments/your-appointments.component'; // Import DatePipe
+
 
 @NgModule({
   imports: [
@@ -28,9 +33,10 @@ import { MakeAppointmentComponent } from './make-appointment/make-appointment.co
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CdkTableModule
+    CdkTableModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [DatePipe],
   declarations: [
     ViewBillProductsComponent,
     ConfimationComponent,
@@ -40,7 +46,10 @@ import { MakeAppointmentComponent } from './make-appointment/make-appointment.co
     ManageChannelComponent,
     ChannelComponent,
     ManageOrderComponent,
-    MakeAppointmentComponent
+    MakeAppointmentComponent,
+    BookAppointmentComponent,
+    GetAppointmentComponent,
+    YourAppointmentsComponent,
   ]
 })
 export class MaterialComponentsModule {}
